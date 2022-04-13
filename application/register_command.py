@@ -1,6 +1,5 @@
 # coding=utf-8
 from application import bot
-from model import chat
 from model.league import League
 from model.user import User
 from telebot.types import Message
