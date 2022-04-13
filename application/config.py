@@ -23,7 +23,7 @@ DATABASE_URL = os.environ.get('DATABASE_URL', False)
 if not DATABASE_URL:
     raise Exception('No se ha definido DATABASE_URL')
 
-bot = TeleBot(TOKEN, os.environ.get('POLLING', False), parse_mode='Markdown')
+bot = TeleBot(TOKEN, os.environ.get('POLLING', False))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
