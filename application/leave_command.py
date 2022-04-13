@@ -4,14 +4,14 @@ from model.league import League
 from model.user import User
 
 
-@bot.message_handler(commands=['register'])
+@bot.message_handler(commands=['leave'])
 def register(message):
     chatId = message.chat.id
     username = message.from_user.username
 
     if chatId > 0:
         bot.reply_to(
-            message, "This is not a group. I can not register you in any league. Please use this command in a group 😔", parse_mode='Markdown')
+            message, "This is not a group. Please use this command in a group 😔", parse_mode='Markdown')
         return None
 
     if League.get(chatId) == None:
@@ -19,11 +19,11 @@ def register(message):
             message, "There is no league in this group yet. Use the command /startleague to start it! 😎", parse_mode='Markdown')
         return None
 
-    if User.get(username, chatId):
+    if User.get(username, chatId) == None:
         bot.reply_to(
-            message, "You are already registered in this league. Enjoy your predictions! 😎", parse_mode='Markdown')
+            message, "You are not in this league. Remember to use /register if you want to play again 😊", parse_mode='Markdown')
         return None
 
-    User.set(username, chatId)
-    bot.reply_to(message, "You are now registered in this league. Enjoy %s 🥳" % message.from_user.first_name,
+    User.remove(username, chatId)
+    bot.reply_to(message, "We will miss you. You are not in %s league anymore 😭" % League.get(chatId).leagueName,
                  parse_mode='Markdown')

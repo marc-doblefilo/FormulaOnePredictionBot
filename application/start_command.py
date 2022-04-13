@@ -1,7 +1,6 @@
 # coding=utf-8
 from application import bot
 from model.league import League
-from telebot.types import Message
 
 
 @bot.message_handler(commands=['startleague'])
