@@ -52,3 +52,12 @@ class User(db.Model):
         db.session.close()
 
         return record
+
+    @staticmethod
+    def get_all_from_a_league_order_by_points(leagueId):
+        record = db.session.query(User).filter_by(leagueId=leagueId).all()
+        db.session.close()
+
+        record = sorted(record, key=lambda x: x.points, reverse=True)
+
+        return record
