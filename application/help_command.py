@@ -1,5 +1,4 @@
 # coding=utf-8
-from tkinter import N
 from application import bot
 from model.league import League
 
