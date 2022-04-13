@@ -1,8 +1,8 @@
 {
-  "name": "Hackathon bot in Heroku",
+  "name": "Formula One Prediction Bot",
   "description": ".",
   "image": "heroku/python",
-  "repository": "https://github.com/aulasoftwarelibre/hackathonbot",
+  "repository": "https://github.com/marc-doblefilo/FormulaOnePredictionBot",
   "keywords": ["python"],
   "addons": [
     {
