@@ -1,7 +1,7 @@
 # coding=utf-8
 from application import bot
-from model.league import League
-from model.user import User
+from src.league.domain.league import League
+from src.user.domain.user import User
 
 
 @bot.message_handler(commands=['leave'])

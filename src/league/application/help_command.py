@@ -1,6 +1,6 @@
 # coding=utf-8
 from application import bot
-from model.league import League
+from src.league.domain.league import League
 
 
 @bot.message_handler(commands=['help'])

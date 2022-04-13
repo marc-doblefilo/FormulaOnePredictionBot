@@ -1,6 +1,6 @@
 from application import db
-from model import league
-from model import user
+from src.league.domain import league
+from src.user.domain import user
 
 # Last line
 db.create_all()

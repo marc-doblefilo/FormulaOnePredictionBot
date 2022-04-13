@@ -1,8 +1,8 @@
 # coding=utf-8
 from application import bot
-from infrastructure.get_drivers import get_current_drivers
-from model.league import League
-from shared.tables import create_drivers_table
+from src.driver.infrastructure.get_drivers import get_current_drivers
+from src.league.domain.league import League
+from src.shared.tables import create_drivers_table
 
 
 @bot.message_handler(commands=['getdrivers'])

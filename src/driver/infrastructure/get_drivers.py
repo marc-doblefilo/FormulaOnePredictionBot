@@ -1,7 +1,7 @@
 import xmltodict
 import requests
 
-from model.driver import Driver
+from src.driver.domain.driver import Driver
 
 
 def get_current_drivers():

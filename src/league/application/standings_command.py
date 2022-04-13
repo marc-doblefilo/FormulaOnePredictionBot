@@ -1,8 +1,8 @@
 # coding=utf-8
 from application import bot
-from model.league import League
-from model.user import User
-from shared.tables import create_standings_table
+from src.league.domain.league import League
+from src.user.domain.user import User
+from src.shared.tables import create_standings_table
 
 
 @bot.message_handler(commands=['standings'])
