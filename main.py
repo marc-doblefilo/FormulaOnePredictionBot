@@ -46,6 +46,6 @@ if bot.threaded:
     exit(0)
 
 if __name__ == '__main__':
-    set_webhook()
+    set_webhook(True)
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port, debug=True)

@@ -8,7 +8,7 @@ from telebot.types import Message
 @bot.message_handler(commands=['register'])
 def register(message):
     chatId = message.chat.id
-    userId = message.from_user.username
+    username = message.from_user.username
     chatName = message.chat.title
 
     if chatId > 0:
@@ -21,11 +21,11 @@ def register(message):
             message, "There is no league in this group yet. Use the command /startleague to start it! 😎", parse_mode='Markdown')
         return
 
-    if User.get(userId, chatId):
+    if User.get(username, chatId):
         bot.reply_to(
             message, "You are already registered in this league. Enjoy your predictions! 😎", parse_mode='Markdown')
         return
 
-    User.set(chatId, chatName)
+    User.set(username, chatId)
     bot.reply_to(message, "You are now registered in this league. Enjoy %s 🥳" % message.from_user.first_name,
                  parse_mode='Markdown')
