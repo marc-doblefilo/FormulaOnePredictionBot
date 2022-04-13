@@ -1,0 +1,11 @@
+emoji
+Flask
+Flask-SQLAlchemy
+gunicorn
+httplib2
+psycopg2-binary
+pyTelegramBotAPI
+python-dotenv
+requests
+SQLAlchemy
+WebOb
