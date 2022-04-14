@@ -5,7 +5,7 @@ from src.league.domain.league import League
 from src.shared.tables import create_drivers_table
 
 
-@bot.message_handler(commands=['getdrivers'])
+@bot.message_handler(commands=['drivers'])
 def start(message):
     chatId = message.chat.id
 

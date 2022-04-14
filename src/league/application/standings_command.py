@@ -23,5 +23,5 @@ def register(message):
     users = User.get_all_from_a_league_order_by_points(chatId)
     table = create_standings_table(users)
 
-    bot.reply_to(message, f'<pre>{table}</pre>',
-                 parse_mode='HTML')
+    bot.send_message(chatId, f'<b>{League.get(chatId).leagueName}</b>\n<pre>{table}</pre>',
+                     parse_mode='HTML')

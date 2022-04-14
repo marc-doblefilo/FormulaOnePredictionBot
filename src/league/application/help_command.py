@@ -15,7 +15,7 @@ def start(message):
     help_message = "Hi %s👋. These are all the available commands: \n" +\
         "*BASIC* \n" +\
         "    /startleague - To start a league in any group.\n" +\
-        "    /getdrivers - See all current driver.\n" +\
+        "    /drivers - See all current driver.\n" +\
         "    /help - See this message.\n" +\
         "\n*LEAGUE* \n" +\
         "    /register - You will be registered.\n" +\
