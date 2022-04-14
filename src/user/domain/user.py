@@ -1,5 +1,6 @@
 # coding=utf-8
 from datetime import datetime
+from xmlrpc.client import Boolean
 from model import db
 
 
@@ -9,6 +10,7 @@ class User(db.Model):
     userId = db.Column(db.Text, nullable=False)
     leagueId = db.Column(db.BigInteger, nullable=False)
     points = db.Column(db.Integer, nullable=False)
+    isAdmin = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
     @staticmethod
@@ -17,7 +19,22 @@ class User(db.Model):
             userId=userId, leagueId=leagueId).first()
 
         if record is None:
-            record = User(userId=userId, leagueId=leagueId, points=0,
+            record = User(userId=userId, leagueId=leagueId, points=0, isAdmin=False,
+                          created_at=datetime.now())
+            db.session.add(record)
+
+        db.session.commit()
+        db.session.close()
+
+        return record
+
+    @staticmethod
+    def set_user_as_admin(userId, leagueId):
+        record = db.session.query(User).filter_by(
+            userId=userId, leagueId=leagueId).first()
+
+        if record is None:
+            record = User(userId=userId, leagueId=leagueId, points=0, isAdmin=True,
                           created_at=datetime.now())
             db.session.add(record)
 
@@ -61,3 +78,14 @@ class User(db.Model):
         record = sorted(record, key=lambda x: x.points, reverse=True)
 
         return record
+
+    @staticmethod
+    def is_admin(userId, leagueId):
+        record = db.session.query(User).filter_by(
+            leagueId=leagueId, userId=userId).first()
+        db.session.close()
+
+        if record.isAdmin:
+            return True
+
+        return False

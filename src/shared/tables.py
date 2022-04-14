@@ -7,6 +7,9 @@ def create_standings_table(users: list):
     table.align['Points'] = 'r'
 
     for user in users:
+        if user.isAdmin:
+            table.add_row([f'{user.userId}(ADMIN)', user.points])
+            continue
         table.add_row([user.userId, user.points])
 
     return table

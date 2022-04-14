@@ -24,4 +24,4 @@ def register(message):
     table = create_standings_table(users)
 
     bot.send_message(chatId, f'<b>{League.get(chatId).leagueName}</b>\n<pre>{table}</pre>',
-                     parse_mode='HTML')
+                parse_mode='HTML')

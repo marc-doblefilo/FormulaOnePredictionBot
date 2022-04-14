@@ -11,11 +11,11 @@ class League(db.Model):
     created_at = db.Column(db.DateTime, nullable=False)
 
     @staticmethod
-    def set(id, name):
+    def set(id, leagueName):
         record = db.session.query(League).filter_by(leagueId=id).first()
 
         if record is None:
-            record = League(leagueId=id, leagueName=name,
+            record = League(leagueId=id, leagueName=leagueName,
                             created_at=datetime.now())
             db.session.add(record)
 
