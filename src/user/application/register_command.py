@@ -19,6 +19,11 @@ def register(message):
             message, "There is no league in this group yet. Use the command /startleague to start it! 😎", parse_mode='Markdown')
         return None
 
+    if username == '' or username == None:
+        bot.reply_to(
+            message, "Sorry buddy. I can not see your username. Make sure you have one before registering yourself in a league. 😓", parse_mode='Markdown')
+        return None
+
     if User.get(username, chatId):
         bot.reply_to(
             message, "You are already registered in this league. Enjoy your predictions! 😎", parse_mode='Markdown')
