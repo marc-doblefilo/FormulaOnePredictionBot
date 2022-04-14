@@ -2,16 +2,20 @@ import prettytable
 
 
 def create_standings_table(users: list):
-    table = prettytable.PrettyTable(['Username', 'Points'])
-    table.align['Username'] = 'l'
-    table.align['Points'] = 'r'
+    table = "\n"
 
-    for user in users:
-        if user.isAdmin:
-            table.add_row([f'{user.userId}(ADMIN)', user.points])
-            continue
-        table.add_row([user.userId, user.points])
+    if(len(users) >= 1):
+        table += "🥇" + users[0].userId + "  " + str(users[0].points) + " POINTS\n"
+    if(len(users) >= 2):
+        table += "🥈" + users[1].userId + "  " + str(users[1].points) + " POINTS\n"
+    if(len(users) >= 3):
+        table += "🥉" + users[2].userId + "  " + str(users[2].points) + " POINTS\n"
 
+    if(len(users) >= 4):
+        for index, user in enumerate(users[3:]):
+            table += index +". " + user.userId + "  " + str(user.points) + " POINTS\n"
+
+    print(table)
     return table
 
 
