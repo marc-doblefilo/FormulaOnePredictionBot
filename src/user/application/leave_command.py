@@ -24,6 +24,11 @@ def register(message):
             message, "You are not in this league. Remember to use /register if you want to play again 😊", parse_mode='Markdown')
         return None
 
+    if User.is_admin(username, chatId):
+        bot.reply_to(
+            message, "You can not leave this league as you are the admin. 😓", parse_mode='Markdown')
+        return None
+
     User.remove(username, chatId)
     bot.reply_to(message, "We will miss you. You are not in %s league anymore 😭" % League.get(chatId).leagueName,
                  parse_mode='Markdown')
