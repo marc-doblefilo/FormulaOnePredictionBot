@@ -29,7 +29,7 @@ class User(db.Model):
         return record
 
     @staticmethod
-    def set_user_as_admin(userId, leagueId):
+    def set_new_user_as_admin(userId, leagueId):
         record = db.session.query(User).filter_by(
             userId=userId, leagueId=leagueId).first()
 
@@ -37,6 +37,16 @@ class User(db.Model):
             record = User(userId=userId, leagueId=leagueId, points=0, isAdmin=True,
                           created_at=datetime.now())
             db.session.add(record)
+
+        db.session.commit()
+        db.session.close()
+
+        return record
+
+    @staticmethod
+    def set_new_points(userId, leagueId, newPoints):
+        record = db.session.query(User).filter_by(
+            userId=userId, leagueId=leagueId).update({User.points: newPoints})
 
         db.session.commit()
         db.session.close()

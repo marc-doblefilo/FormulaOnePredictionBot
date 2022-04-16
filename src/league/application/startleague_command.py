@@ -21,6 +21,6 @@ def start(message):
         return
 
     League.set(chatId, chatName)
-    User.set_user_as_admin(userId, chatId)
+    User.set_new_user_as_admin(userId, chatId)
     bot.reply_to(message, "A new League was created: %s." % League.get(chatId).leagueName,
                  parse_mode='Markdown')
