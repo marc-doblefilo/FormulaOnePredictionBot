@@ -2,7 +2,7 @@
 from application import bot
 from src.league.domain.league import League
 from src.user.domain.user import User
-from src.shared.tables import create_standings_table
+from utils.tables import create_standings_table
 
 
 @bot.message_handler(commands=['standings'])

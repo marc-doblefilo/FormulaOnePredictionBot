@@ -1,6 +1,6 @@
 # coding=utf-8
 from application import bot
-from src.shared.extract_arguments import extract_arguments_without_command
+from utils.extract_arguments import extract_arguments_without_command
 from src.league.domain.league import League
 from src.user.domain.user import User
 
