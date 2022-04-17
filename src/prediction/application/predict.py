@@ -3,6 +3,7 @@ from application import bot
 from src.prediction.domain.prediction import Prediction
 from src.race.domain.race import Race
 from src.driver.infrastructure.get_code_drivers import get_current_drivers_code
+from utils.check_duplicates import check_duplicates
 from utils.extract_arguments import extract_arguments_without_command
 from src.league.domain.league import League
 from src.user.domain.user import User
@@ -44,12 +45,19 @@ def predict(message):
     current_drivers_code = get_current_drivers_code()
 
     for argument in arguments:
-        print(type(argument))
         if argument not in current_drivers_code:
             bot.reply_to(
                 message, f"Sorry buddy. There is no driver code equals to {argument}", parse_mode='Markdown'
             )
             return
+
+    if check_duplicates(arguments):
+        bot.reply_to(
+            message, 
+            f"It seems there is a duplicated item in your Top-Three Selection. Make sure the message do not repeat any driver's code😬",
+            parse_mode='Markdown'
+        )
+        return
 
     next_race = Race.get_next_race()
 

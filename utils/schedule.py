@@ -8,9 +8,6 @@ from src.race.application.finish_race import finish_race
 from application import scheduler
 from src.race.domain.race import Race
 
-def test():
-    print('Race is starting')
-
 def schedule_next_race():
     next_race = Race.get_next_race()
 
