@@ -1,9 +1,9 @@
 from application.config import TOKEN, SECRET_TOKEN, HEROKU_APP_NAME, DATABASE_URL
 from application.config import bot, app, db, scheduler
 from src.driver.application import \
-    drivers_command
-from src.league.application import standings_command, startleague_command, removeleague_command
-from src.user.application import leave_command, register_command, changepoints_command
+    drivers
+from src.league.application import removeleague, standings, startleague
+from src.user.application import register, changepoints, leave
 from src.race.application import get_races
 from application import help_command
 from src.prediction.application import predict, predictions
