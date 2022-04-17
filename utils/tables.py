@@ -40,7 +40,7 @@ def create_predictions_table(predictions: list):
         if User.is_admin(prediction.user_id, prediction.league_id):
             table += f"{prediction.user_id} (A)\n 🥇{prediction.p1}  🥈{prediction.p2}  🥉{prediction.p3}\n\n"
             continue
-        table += f"{prediction.user_id} (A)\n 🥇{prediction.p1}  🥈{prediction.p2}  🥉{prediction.p3}\n\n"
+        table += f"{prediction.user_id}\n 🥇{prediction.p1}  🥈{prediction.p2}  🥉{prediction.p3}\n\n"
 
     return table
 
