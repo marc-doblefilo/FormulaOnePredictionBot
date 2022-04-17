@@ -1,6 +1,5 @@
 # coding=utf-8
 from datetime import datetime
-from typing import List
 from model import db
 from src.race.infrastructure.get_current_races import get_current_races
 
@@ -40,7 +39,7 @@ class Prediction(db.Model):
         return record
 
     @staticmethod
-    def get_all_by_race(league_id, race_id, race_season) -> List:
+    def get_all_by_race(league_id, race_id, race_season) -> list:
         record = db.session.query(Prediction).filter_by(
             league_id=league_id,
             race_id=race_id,

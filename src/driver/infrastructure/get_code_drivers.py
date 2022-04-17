@@ -1,8 +1,7 @@
-from typing import List
 import xmltodict
 import requests
 
-def get_current_drivers_code() -> List:
+def get_current_drivers_code() -> list:
     response = requests.get("https://ergast.com/api/f1/current/drivers")
 
     doc = xmltodict.parse(response.text)
