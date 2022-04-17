@@ -1,5 +1,6 @@
 import os
 
+from apscheduler.schedulers.background import BackgroundScheduler
 from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -24,6 +25,8 @@ if not DATABASE_URL:
     raise Exception('No se ha definido DATABASE_URL')
 
 bot = TeleBot(TOKEN, os.environ.get('POLLING', False))
+
+scheduler = BackgroundScheduler(timezone="UTC")
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL

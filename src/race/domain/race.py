@@ -23,9 +23,14 @@ class Race(db.Model):
             return
 
         for race in races:
-            record = db.session.query(Race).filter_by(season=race[0], race_id=race[1], race_name=race[2], is_closed=race[3], is_finished=race[4]).first()
+            record = db.session.query(Race).filter_by(season=race[0], race_id=race[1], race_name=race[2]).first()
 
             if record is None:
+                record = Race(season=race[0], race_id=race[1], race_name=race[2], is_closed=race[3], is_finished=race[4], created_at=datetime.now())
+                db.session.add(record)
+                new_races_saved += 1
+            if record is not None:
+                db.session.query(Race).filter_by(season=race[0], race_id=race[1], race_name=race[2]).delete()
                 record = Race(season=race[0], race_id=race[1], race_name=race[2], is_closed=race[3], is_finished=race[4], created_at=datetime.now())
                 db.session.add(record)
                 new_races_saved += 1
@@ -48,6 +53,18 @@ class Race(db.Model):
         return record
 
     @staticmethod
+    def finish(season_id, race_id):
+        record = db.session.query(Race).filter_by(season=season_id, race_id=race_id).first()
+
+        if record is not None:
+            record = db.session.query(Race).filter_by(season=season_id, race_id=race_id).update({Race.is_finished: True})
+
+        db.session.commit()
+        db.session.close()
+        
+        return record
+
+    @staticmethod
     def get():
         record = db.session.query(Race).filter_by().all()
         db.session.close()
@@ -59,7 +76,16 @@ class Race(db.Model):
         db.session.close()
 
         record = sorted(record, key=lambda x: int(x.race_id), reverse=False)
-        for race in record:
-            print(f"{race.race_id} / {race.race_name}")
 
+        return record[0]
+
+    def get_current_race():
+        record = db.session.query(Race).filter_by(is_closed=True, is_finished=False).all()
+        db.session.close()
+
+        record = sorted(record, key=lambda x: int(x.race_id), reverse=False)
+
+        if len(record) == 0:
+            return None
+        
         return record[0]
