@@ -1,6 +1,5 @@
 # coding=utf-8
 from datetime import datetime
-from xmlrpc.client import Boolean
 from model import db
 
 

@@ -1,4 +1,3 @@
-from xmlrpc.client import boolean
 import xmltodict
 import requests
 from datetime import datetime
@@ -10,8 +9,8 @@ def get_current_races():
 
     races = []
     for race in doc['MRData']['RaceTable']['Race']:
-        isClosed: boolean = False
-        isFinished: boolean = False
+        isClosed: bool = False
+        isFinished: bool = False
         date = datetime.strptime(race['Date'] + " " + race['Time'], '%Y-%m-%d %H:%M:%SZ')
 
         if(date < datetime.utcnow()):

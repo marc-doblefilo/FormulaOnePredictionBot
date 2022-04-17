@@ -29,7 +29,7 @@ class Race(db.Model):
                 record = Race(season=race[0], race_id=race[1], race_name=race[2], is_closed=race[3], is_finished=race[4], created_at=datetime.now())
                 db.session.add(record)
                 new_races_saved += 1
-            if record is not None:
+            if record is not None and record.is_closed != race[3] or record.is_finished != race[4]:
                 db.session.query(Race).filter_by(season=race[0], race_id=race[1], race_name=race[2]).delete()
                 record = Race(season=race[0], race_id=race[1], race_name=race[2], is_closed=race[3], is_finished=race[4], created_at=datetime.now())
                 db.session.add(record)
