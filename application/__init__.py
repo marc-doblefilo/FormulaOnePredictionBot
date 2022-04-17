@@ -6,4 +6,4 @@ from src.league.application import standings_command, startleague_command, remov
 from src.user.application import leave_command, register_command, changepoints_command
 from src.race.application import get_races
 from application import help_command
-from src.prediction.application import predict
+from src.prediction.application import predict, predictions

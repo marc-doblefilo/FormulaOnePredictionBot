@@ -1,5 +1,7 @@
 import prettytable
 
+from src.user.domain.user import User
+
 
 def create_standings_table(users: list):
     table = "\n"
@@ -31,6 +33,16 @@ def create_standings_table(users: list):
 
     return table
 
+def create_predictions_table(predictions: list):
+    table = "\n"
+
+    for index, prediction in enumerate(predictions):
+        if User.is_admin(prediction.user_id, prediction.league_id):
+            table += f"{prediction.user_id} (A)\n 🥇{prediction.p1}  🥈{prediction.p2}  🥉{prediction.p3}\n\n"
+            continue
+        table += f"{prediction.user_id} (A)\n 🥇{prediction.p1}  🥈{prediction.p2}  🥉{prediction.p3}\n\n"
+
+    return table
 
 def create_drivers_table(drivers: list):
     table = prettytable.PrettyTable(['Driver', 'Code', 'Number'])
