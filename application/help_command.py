@@ -20,6 +20,8 @@ def start(message):
         "\n*LEAGUE* \n" +\
         "    /register - You will be registered.\n" +\
         "    /standings - See the current standings.\n" +\
+        "    /predictions - See predictions for the next race.\n" +\
+        "    /predict ALO LEC VER - Predict next race top three.\n" +\
         "    /leave - You will leave the league.\n" +\
         "\n*ADMIN* \n" +\
         "    /changepoints (username) (points) - Change points to a user."
