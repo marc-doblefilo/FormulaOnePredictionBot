@@ -22,8 +22,6 @@ def schedule_next_race():
 
     race = doc['MRData']['RaceTable']['Race']
     date = datetime.strptime(race['Date'] + " " + race['Time'], '%Y-%m-%d %H:%M:%SZ')
-    print(date)
-    print(date.hour)
 
     trigger = CronTrigger(year=date.year, month=date.month, day=date.day, hour=date.hour, minute=date.minute, timezone="UTC")
 

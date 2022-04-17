@@ -20,7 +20,9 @@ def start(message):
         "\n*LEAGUE* \n" +\
         "    /register - You will be registered.\n" +\
         "    /standings - See the current standings.\n" +\
-        "    /leave - You will leave the league.\n"
+        "    /leave - You will leave the league.\n" +\
+        "\n*ADMIN* \n" +\
+        "    /changepoints (username) (points) - Change points to a user."
 
     bot.send_message(message.chat.id, help_message %
                      message.from_user.first_name, parse_mode='Markdown')
