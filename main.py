@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from flask import request
 from application import app, bot, SECRET_TOKEN
+from scheduler import schedule_next_race
 from webhook import set_webhook
 import json
 import logging
@@ -13,6 +14,7 @@ import traceback
 logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
 logging.info('Starting...')
 
+schedule_next_race()
 
 @app.route('/me', methods=['GET'])
 def send_me():

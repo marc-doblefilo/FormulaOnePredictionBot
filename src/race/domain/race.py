@@ -35,6 +35,17 @@ class Race(db.Model):
 
         return new_races_saved
 
+    @staticmethod
+    def closes_a_race(season_id, race_id):
+        record = db.session.query(Race).filter_by(season=season_id, race_id=race_id).first()
+
+        if record is not None:
+            record = db.session.query(Race).filter_by(season=season_id, race_id=race_id).update({Race.is_closed: True})
+
+        db.session.commit()
+        db.session.close()
+        
+        return record
 
     @staticmethod
     def get():
@@ -42,3 +53,13 @@ class Race(db.Model):
         db.session.close()
 
         return record
+    
+    def get_next_race():
+        record = db.session.query(Race).filter_by(is_closed=False, is_finished=False).all()
+        db.session.close()
+
+        record = sorted(record, key=lambda x: int(x.race_id), reverse=False)
+        for race in record:
+            print(f"{race.race_id} / {race.race_name}")
+
+        return record[0]

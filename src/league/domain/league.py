@@ -30,3 +30,11 @@ class League(db.Model):
         db.session.close()
 
         return record
+
+    @staticmethod
+    def get_all():
+        record = db.session.query(League).filter_by().all()
+        db.session.close()
+
+        return record
+
