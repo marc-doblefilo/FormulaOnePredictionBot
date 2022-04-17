@@ -74,6 +74,16 @@ class User(db.Model):
         db.session.close()
 
     @staticmethod
+    def remove_all_from_league(leagueId):
+        record = db.session.query(User).filter_by(leagueId=leagueId).first()
+
+        if record is not None:
+            db.session.query(User).filter_by(leagueId=leagueId).delete()
+
+        db.session.commit()
+        db.session.close()
+
+    @staticmethod
     def get_all_from_a_league(leagueId):
         record = db.session.query(User).filter_by(leagueId=leagueId).all()
         db.session.close()

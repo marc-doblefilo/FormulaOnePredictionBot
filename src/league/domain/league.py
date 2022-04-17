@@ -38,3 +38,11 @@ class League(db.Model):
 
         return record
 
+    def remove(id):
+        record = db.session.query(League).filter_by(leagueId=id).first()
+
+        if record is not None:
+            db.session.query(League).filter_by(leagueId=id).delete()
+
+        db.session.commit()
+        db.session.close()
