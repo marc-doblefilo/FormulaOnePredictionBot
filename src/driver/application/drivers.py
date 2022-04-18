@@ -1,7 +1,6 @@
 # coding=utf-8
 from application import bot
 from src.driver.infrastructure.get_drivers import get_current_drivers
-from src.league.domain.league import League
 from utils.tables import create_drivers_table
 
 

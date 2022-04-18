@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 from flask import request
 from application import app, bot, scheduler, SECRET_TOKEN
-from apscheduler.schedulers.background import BackgroundScheduler
 from src.race.domain.race import Race
 from utils.schedule import schedule_next_race
 from webhook import set_webhook

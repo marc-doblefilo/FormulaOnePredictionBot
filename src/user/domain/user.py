@@ -52,6 +52,17 @@ class User(db.Model):
 
         return record
 
+
+    @staticmethod
+    def add_points(userId, leagueId, points):
+        record = db.session.query(User).filter_by(
+            userId=userId, leagueId=leagueId).update({User.points: User.points + points})
+
+        db.session.commit()
+        db.session.close()
+
+        return record
+
     @staticmethod
     def get(userId, leagueId):
         record = db.session.query(User).filter_by(

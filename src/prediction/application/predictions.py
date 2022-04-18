@@ -1,10 +1,7 @@
 # coding=utf-8
 from application import bot
-from src.race.infrastructure.get_current_races import get_current_races
 from src.prediction.domain.prediction import Prediction
 from src.race.domain.race import Race
-from src.driver.infrastructure.get_code_drivers import get_current_drivers_code
-from utils.extract_arguments import extract_arguments_without_command
 from src.league.domain.league import League
 from src.user.domain.user import User
 from utils.tables import create_predictions_table
