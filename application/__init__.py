@@ -4,6 +4,6 @@ from src.driver.application import \
     drivers
 from src.league.application import removeleague, standings, startleague
 from src.user.application import register, changepoints, leave
-from src.race.application import get_races
+from src.race.application import get_races, finish_race_by_command
 from application import help_command
 from src.prediction.application import predict, predictions
