@@ -3,7 +3,7 @@
 from flask import request
 from application import app, bot, scheduler, SECRET_TOKEN
 from src.race.domain.race import Race
-from utils.schedule import schedule_next_race
+from utils.schedule import schedule_next_race, schedule_next_repeated_check_results_30_minutes_after_last_check
 from webhook import set_webhook
 import json
 import logging
@@ -17,7 +17,11 @@ logging.info('Starting...')
 
 scheduler.start()
 Race.set()
-schedule_next_race()
+race = Race.get_current_race()
+if race != None:
+    schedule_next_repeated_check_results_30_minutes_after_last_check()
+else:
+    schedule_next_race()
 
 @app.route('/me', methods=['GET'])
 def send_me():
