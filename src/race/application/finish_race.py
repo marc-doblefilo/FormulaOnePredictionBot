@@ -1,4 +1,5 @@
 # coding=utf-8
+import logging
 import requests
 import xmltodict
 
@@ -37,5 +38,8 @@ def finish_race():
             predict = [prediction.p1, prediction.p2, prediction.p3]
             User.add_points(prediction.user_id, league.leagueId, sum_points(results, predict))
             
-        bot.send_message(league.leagueId, f'CHECKERED FLAG🏁 Check /standings to see race results.',
+        try:
+            bot.send_message(league.leagueId, f'CHECKERED FLAG🏁 Check /standings to see race results.',
                 parse_mode='Markdown')
+        except:
+            logging.error(f'Cannot send a message to this group: {league.leagueId}')
