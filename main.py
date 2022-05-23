@@ -13,7 +13,8 @@ import sys
 import telebot
 import traceback
 
-logging.basicConfig(stream=sys.stdout, level=logging.DEBUG)
+logging.basicConfig(stream=sys.stdout)
+logging.getLogger().setLevel(logging.INFO)
 logging.info('Starting...')
 
 scheduler.start()
