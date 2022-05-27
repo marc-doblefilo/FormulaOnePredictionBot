@@ -1,116 +1,68 @@
-# Hackathon bot
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+[![LinkedIn][linkedin-shield]][linkedin-url]
 
-Ejemplo de bot desplegado en Heroku para el hackathon del Aula de Software Libre.
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h1 align="center">FormulaOnePredictionBot</h1>
 
-## Instalación en el servidor
+  <p align="center">
+  FormulaOnePredictionBot is a telegram bot for groups to try to predict Sunday's podium.
+    <br />
+    <a href="https://t.me/FormulaPredictionsBot">Chat with Bot</a>
+    ·
+    <a href="https://github.com/marc-doblefilo/FormulaOnePredictionBot/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/marc-doblefilo/FormulaOnePredictionBot/issues">Request Feature</a>
+  </p>
+</div>
 
-Es imprescindible tener cuenta en Heroku para acelerar la instalación. Para desplegar la aplicación en heroku pulse el siguiente botón:
+## How to use it 📱
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+You need to add this bot to your league group. Using this command, the league will be created and you will be the admin of it:
 
-Cuando _Heroku_ se lo solicite indique el token de su bot. El nombre de la aplicación debe coincidir con el dato solicitado en _HEROKU_APP_NAME_.
+    /startleague
 
-Una vez _Heroku_ termine de desplegar la aplicación, el bot estaré listo para ser usado.
+Then every user who wants to participate need to use the next command:
 
-## Instalación en local
+    /register
 
-Si bien podemos tener el entorno de producción en _Heroku_, también tendremos un entorno de desarrollo donde ir probando nuestro bot. Es importante no compartir el mismo token del bot de producción con el que se tenga en desarrollo. Se recomienda que cada miembro del equipo se cree un bot de desarrollo propio.
+They will be added to the league, you can see everyone by using the next command:
 
-## Configuración
+    /standings
 
-Dentro del archivo `__application/__init.py__` se inicializan las variables necesarias para que el bot funcione.
+If its a sunday, you can try to predict the race by using:
 
-Este archivo exporta principalmente dos variables:
+    /predict LEC ALO VER
 
-* `bot`: Se debe importar en todos los archivos que quieran hacer uso de la API que ofrece la librería de _pyTelegramBotAPI_.
-* `app`: Se debe importar en todos los archivos que quieran hacer uso de la API que ofrece la librería de _Flask_. 
+It will save your prediction as 1. Leclerc 2. Alonso and 3. Verstappen.
 
-Para configurar las variables que necesitamos en local copiar el archivo siguiente:
+At the end of the day, the bot will update the race predictions and the points of every user who did a prediction.
 
-    cp .env.dist .env
+At every point you can use the command for help:
 
-Editar el archivo _.env_ y configuramos el _token_ de nuestro _bot_. El resto de variables se puede dejar como están.
+    /help
 
-## Ejecución
-
-### En local
-
-Para instalarlo en local es necesario tener instalado _python2.7_ o _python3.x_ y _virtualenv_. Python viene instalado por defecto en cualquier distribución, pero _virtualenv_ es probable que no.
-
-Para instalar _virtualenv_ en _Debian_/_Ubuntu_ hacemos lo siguiente:
-
-```sh
-sudo apt-get install virtualenv
-```
-
-Una vez instalados vamos a instalar las dependencias e iniciar el entorno virtual de python:
-
-    virtualenv venv
-    source venv/bin/activate
-    pip install -r requirements.txt
-
-Ahora para iniciar el bot, todo lo que debemos hace es ejecutar el archivo _main.py_.
-
-    python main.py
-
-Siempre debemos hacerlo en una consola con el entorno virtual cargado.
-
-## Funciones
-
-Dentro del directorio `application` se pueden añadir nuevas funciones, ya sea en los archivos existentes o en archivos nuevos.
-
-Las funciones de _Telegram_, ya sean comandos o expresiones regulares, irán con la anotación correspondiente que permite la librería _pyTelegramBotAPI_.
-
-Para más información, leed la documentación de [pyTelegramBotAPI](https://github.com/eternnoir/pyTelegramBotAPI).
-
-Un template para un nuevo archivo de funciones es el siguiente:
-
-```python
-# coding=utf-8
-from application import bot
+<!-- AUTHOR -->
+## Author 🖋
+* **Marc Rodríguez** - *Project and Documentation* - [Github](https://github.com/marc-doblefilo) · [Twitter](https://github.com/marc_doblefilo)
 
 
-@bot.message_handler(commands=['test'])
-def test(message):
-    bot.reply_to(message, "Prueba")
-
-```
-
-Es necesario importar ese nuevo fichero en `application/__init__.py` donde se indica (al final del archivo). El orden es importante, porque la primera orden que coincida es la que se ejecuta.
-
-## Base de datos
-
-En local se crea un archivo en `/tmp/flask_app.db` con la base de datos en sqlite. En remoto, se crea en una base de datos de postgresql proporcionada por Heroku.
-
-### Esquema
-
-Dentro del directorio `model` se ha creado una clase dentro del archivo `chat.py` que sirve de ejemplo para crear tablas dentro de la aplicación.
-
-Para más información, leed la documentación de [Flask-SQLAlchemy](http://flask-sqlalchemy.pocoo.org/2.3/)
-
-Un template para una nueva clase es el siguiente:
-
-```python
-from model import db
-
-class Tabla(db.Model):
-    ___table__name = 'tabla'
-    id = db.Column(db.Integer, primary_key=True)
-    
-    # Métodos get/set
-```
-
-Es necesario importar el fichero en `model/__init__.py` donde se indica.
-
-### Clase Chat
-
-Se adjunta una clase Chat que permite almacenar valores en una tabla. Se puede indicar el chat asociado al dato (chat), el nombre del dato (key) y su valor (value). Si se quiere un dato que exista para cualquier chat se puede usar como identificador de chat el 0 (cero).
-
-Un ejemplo de uso se encuentra en `application/db.py`.
-
-
-## Referencias
-
-Para obtener APIs abiertas podeís consultar el siguiente repositorio de Github:
-
-* [https://github.com/toddmotto/public-apis](https://github.com/toddmotto/public-apis)
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/marc-doblefilo/FormulaOnePredictionBot.svg?style=for-the-badge
+[contributors-url]: https://github.com/marc-doblefilo/FormulaOnePredictionBot/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/marc-doblefilo/FormulaOnePredictionBot.svg?style=for-the-badge
+[forks-url]: https://github.com/marc-doblefilo/FormulaOnePredictionBot/network/members
+[stars-shield]: https://img.shields.io/github/stars/marc-doblefilo/FormulaOnePredictionBot.svg?style=for-the-badge
+[stars-url]: https://github.com/marc-doblefilo/FormulaOnePredictionBot/stargazers
+[issues-shield]: https://img.shields.io/github/issues/marc-doblefilo/FormulaOnePredictionBot.svg?style=for-the-badge
+[issues-url]: https://github.com/marc-doblefilo/FormulaOnePredictionBot/issues
+[license-shield]: https://img.shields.io/github/license/marc-doblefilo/FormulaOnePredictionBot.svg?style=for-the-badge
+[license-url]: https://github.com/marc-doblefilo/FormulaOnePredictionBot/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=0072b1
+[linkedin-url]: https://www.linkedin.com/in/marc-rodr%C3%ADguez-8b1441195/
