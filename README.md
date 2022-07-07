@@ -26,6 +26,8 @@
 
 You need to add this bot to your league group. Using this command, the league will be created and you will be the admin of it:
 
+![Video example of the command startleague](https://raw.githubusercontent.com/marc-doblefilo/FormulaOnePredictionBot/master/public/starleague_command.gif)
+
     /startleague
 
 Then every user who wants to participate need to use the next command:
