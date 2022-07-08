@@ -30,7 +30,7 @@ def get_next_race_schedule():
 
         schedule['First Practice'] = date
     except:
-        logging.info('This race has no First Practice session')
+        logging.debug('This race has no First Practice session')
 
     try:
         date = datetime.strptime(
@@ -40,7 +40,7 @@ def get_next_race_schedule():
 
         schedule['Second Practice'] = date
     except:
-        logging.info('This race has no Second Practice session')
+        logging.debug('This race has no Second Practice session')
 
     try:
         date = datetime.strptime(
@@ -50,7 +50,7 @@ def get_next_race_schedule():
 
         schedule['Third Practice'] = date
     except:
-        logging.info('This race has no Third Practice session')
+        logging.debug('This race has no Third Practice session')
 
     try:
         date = datetime.strptime(
@@ -60,7 +60,7 @@ def get_next_race_schedule():
 
         schedule['Sprint'] = date
     except:
-        logging.info('This race has no Sprint session')
+        logging.debug('This race has no Sprint session')
 
     try:
         date = datetime.strptime(
@@ -70,6 +70,6 @@ def get_next_race_schedule():
 
         schedule['Qualifying'] = date
     except:
-        logging.info('This race has no Qualifying session')
+        logging.debug('This race has no Qualifying session')
 
     return schedule

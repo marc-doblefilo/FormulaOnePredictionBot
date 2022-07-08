@@ -3,6 +3,7 @@ import logging
 import pytz
 
 from application import bot
+from src.race.domain.race import Race
 from src.race.infrastructure.get_next_race_schedule import get_next_race_schedule
 from utils.extract_arguments import extract_arguments_without_command
 
@@ -31,6 +32,13 @@ def next_race(message):
     message_text: str = ''
 
     schedule = get_next_race_schedule()
+
+    race = Race.get_current_race()
+    if race == None:
+        race = Race.get_next_race()
+
+    message_text += f'*{race.race_name}*\n\n'
+
     ordered_sessions = sorted(schedule, key=schedule.get)
     if len(arguments) == 1 and arguments[0] != None:
         timezone = pytz.timezone(arguments[0])
