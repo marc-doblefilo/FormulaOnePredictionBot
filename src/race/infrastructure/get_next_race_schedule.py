@@ -12,7 +12,7 @@ def get_next_race_schedule():
 
     response = requests.get('https://ergast.com/api/f1/current/next')
 
-    doc = xmltodict.parse(response.text)
+    doc = xmltodict.parse(response.text, process_namespaces=False)
 
     race = doc['MRData']['RaceTable']['Race']
     date = datetime.strptime(

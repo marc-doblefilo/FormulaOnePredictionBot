@@ -18,7 +18,6 @@ logging.getLogger().setLevel(logging.INFO)
 logging.info('Starting...')
 
 scheduler.start()
-get_races()
 race = Race.get_current_race()
 if race != None:
     schedule_next_repeated_check_results_30_minutes_after_last_check()

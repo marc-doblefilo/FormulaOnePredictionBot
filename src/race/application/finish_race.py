@@ -18,9 +18,10 @@ def finish_race():
 
     race = Race.get_current_race()
 
-    response = requests.get(f'https://ergast.com/api/f1/current/{race.race_id}/results')
+    response = requests.get(
+        f'https://ergast.com/api/f1/current/{race.race_id}/results')
 
-    doc = xmltodict.parse(response.text)
+    doc = xmltodict.parse(response.text, process_namespaces=False)
 
     if(len(doc['MRData']['RaceTable']) == 2):
         schedule.schedule_next_repeated_check_results_30_minutes_after_last_check()
@@ -28,18 +29,22 @@ def finish_race():
 
     data = doc['MRData']['RaceTable']['Race']['ResultsList']
 
-    results = [ data['Result'][0]['Driver']['@code'], data['Result'][1]['Driver']['@code'], data['Result'][2]['Driver']['@code']]
+    results = [data['Result'][0]['Driver']['@code'], data['Result']
+               [1]['Driver']['@code'], data['Result'][2]['Driver']['@code']]
 
     Race.finish(race.season, race.race_id)
     schedule.schedule_next_race()
     for league in leagues:
-        predictions = Prediction.get_all_by_race(league.leagueId, race.race_id, race.season)
+        predictions = Prediction.get_all_by_race(
+            league.leagueId, race.race_id, race.season)
         for prediction in predictions:
             predict = [prediction.p1, prediction.p2, prediction.p3]
-            User.add_points(prediction.user_id, league.leagueId, sum_points(results, predict))
-            
+            User.add_points(prediction.user_id, league.leagueId,
+                            sum_points(results, predict))
+
         try:
             bot.send_message(league.leagueId, f'CHECKERED FLAG🏁 Check /standings to see race results.',
-                parse_mode='Markdown')
+                             parse_mode='Markdown')
         except:
-            logging.error(f'Cannot send a message to this group: {league.leagueId}')
+            logging.error(
+                f'Cannot send a message to this group: {league.leagueId}')

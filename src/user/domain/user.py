@@ -12,6 +12,8 @@ class User(db.Model):
     isAdmin = db.Column(db.Boolean, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
+    db.create_all()
+
     @staticmethod
     def set(userId, leagueId):
         record = db.session.query(User).filter_by(
@@ -51,7 +53,6 @@ class User(db.Model):
         db.session.close()
 
         return record
-
 
     @staticmethod
     def add_points(userId, leagueId, points):
