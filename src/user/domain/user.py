@@ -1,6 +1,6 @@
 # coding=utf-8
+from application.config import db
 from datetime import datetime
-from model import db
 
 
 class User(db.Model):

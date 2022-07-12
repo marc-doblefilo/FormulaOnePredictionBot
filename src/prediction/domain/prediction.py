@@ -1,6 +1,6 @@
 # coding=utf-8
 from datetime import datetime
-from model import db
+from application.config import db
 from src.race.infrastructure.get_current_races import get_current_races
 
 
@@ -18,12 +18,13 @@ class Prediction(db.Model):
 
     @staticmethod
     def set(user_id, league_id, race_id, race_season, p1: str, p2: str, p3: str):
-        record = db.session.query(Prediction).filter_by(user_id=user_id, league_id=league_id, race_id=race_id, race_season=race_season).first()
+        record = db.session.query(Prediction).filter_by(
+            user_id=user_id, league_id=league_id, race_id=race_id, race_season=race_season).first()
 
         if record is None:
             record = Prediction(user_id=user_id, league_id=league_id,
-            race_id=race_id, race_season=race_season,
-            p1=p1, p2=p2, p3=p3, created_at=datetime.now())
+                                race_id=race_id, race_season=race_season,
+                                p1=p1, p2=p2, p3=p3, created_at=datetime.now())
             db.session.add(record)
 
         if record is not None:

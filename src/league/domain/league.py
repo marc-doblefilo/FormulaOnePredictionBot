@@ -1,6 +1,6 @@
 # coding=utf-8
 from datetime import datetime
-from model import db
+from application.config import db
 
 
 class League(db.Model):
